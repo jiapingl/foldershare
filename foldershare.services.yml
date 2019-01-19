@@ -1,0 +1,31 @@
+#
+# Define services provided by the module.
+#
+
+services:
+
+#
+# Breadcrumbs builder.
+# --------------------
+# The breadcrumb builder responds on module entity view pages, edit pages,
+# and command forms, to build a breadcrumb based on the root-to-entity
+# folder path.
+#
+  foldershare.breadcrumb:
+    class: Drupal\foldershare\Entity\Builder\FolderShareBreadcrumbBuilder
+    arguments: ['@entity.manager', '@router.route_provider', '@access_manager', '@current_user']
+    tags:
+      - { name: breadcrumb_builder, priority: 100000 }
+
+#
+# FolderShare commands.
+# ---------------------
+# Commands are similar to Drupal actions, but they include multiple standard
+# arguments (e.g. parent, selection) and detailed context information
+# (e.g. 'upload' only works when viewing a folder). Command execution requires
+# forwarding a command choice and parameters from the UI to code managed by the
+# command plugin manager.
+#
+  foldershare.plugin.manager.foldersharecommand:
+    class: Drupal\foldershare\Plugin\FolderShareCommandManager
+    arguments: ['@container.namespaces', '@cache.discovery', '@module_handler']

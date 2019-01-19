@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - foldershare
+  module:
+    - foldershare
+id: foldershare_search
+label: 'Folders and files'
+path: foldershare
+weight: -10
+plugin: foldershare_search
+configuration:
+  search_items:
+    search_file_content: true
+    search_file_extensions: '1st asc ascii asp aspx bash bat c c++ cgi cmake config cp cpp cs csh css csv csx cxx dat data dtd f h hpp htm html ics inc include info ini install java js json jsp kml latex less ltx m make man md mlv module p pdf perl php pl pm prl proj py pyc python r rdf readme rss rtf rtx s sass scss sh swift tcl tex texinfo text tsv twig txt xhtml xml xsd xsl yaml yml'
+    search_file_size: 1024 
+    show_advanced_keywords_form: false

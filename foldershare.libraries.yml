@@ -1,0 +1,71 @@
+#
+# Declares libraries of CSS and Javascript used by the module.
+#
+
+# Main module library.
+# --------------------
+# The module library contains CSS that provides base styling for file and
+# folder view pages, and root folder lists. It also defines MIME type
+# icons for file links.
+#
+foldershare.module:
+  version: VERSION
+  css:
+    theme:
+      /core/themes/classy/css/components/file.css: {}
+      css/foldershare.module.css: {}
+      css/foldershare.mime.css: {}
+  js:
+    js/foldershare.ui.utility.js: {}
+    js/foldershare.ui.ancestormenu.js: {}
+    js/foldershare.ui.foldertablemenu.js: {}
+    js/foldershare.ui.folderselectiondialog.js: {}
+    # Workaround for missing items for jQuery 3 in Drupal 8.4, 8.5, ...
+    /core/assets/vendor/jquery.ui/ui/form-reset-mixin-min.js: {weight: -11, minified: true}
+    /core/assets/vendor/jquery.ui/ui/escape-selector-min.js: {weight: -11, minified: true}
+  dependencies:
+    - core/drupal.tableresponsive
+    - core/jquery
+    - core/jquery.form
+    - core/jquery.once
+    - core/jquery.ui
+    - core/jquery.ui.dialog
+    - core/jquery.ui.button
+    - core/jquery.ui.menu
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.dialog
+    - core/drupal.ajax
+    - core/drupal.dialog.ajax
+
+# Admin library.
+# --------------
+# The admin library contains CSS that styles the administrative pages,
+# including those for help, module settings, and the usage report.
+#
+foldershare.module.admin:
+  version: VERSION
+  css:
+    theme:
+      css/foldershare.admin.css: {}
+      css/foldershare.admin.settings.css: {}
+      css/foldershare.admin.help.css: {}
+      css/foldershare.admin.usage.css: {}
+
+# Field formatter styling
+# -----------------------
+# Styles for the module's formatter settings for Field UI and View UI.
+foldershare.fieldformatter:
+  version: VERSION
+  css:
+    theme:
+      css/foldershare.fieldformatter.css: {}
+
+# Branding
+# --------
+# Styles for administrator-visible branding.
+foldershare.branding:
+  version: VERSION
+  css:
+    theme:
+      css/foldershare.branding.css: {}

@@ -1,0 +1,97 @@
+/**
+ * @file
+ * FolderShare administrator help page.
+ */
+
+/*
+ * Highlight section titles.
+ */
+.foldershare-admin-help h3 {
+  margin-top: 2em;
+  border-bottom: 1px solid #ccc;
+  clear: both;
+}
+.foldershare-admin-help h4 {
+  margin-top: 2em;
+  border-bottom: 1px solid #ccc;
+  clear: both;
+}
+.foldershare-admin-help h4:first-child {
+  clear: none;
+}
+
+/*
+ * Indent bullet lists.
+ */
+.foldershare-admin-help ul,
+.foldershare-admin-help dl {
+  margin: 0.25em 0 0.25em 1.5em;
+  margin-left: 1em;
+}
+ul,
+.foldershare-admin-help ul {
+  padding-left: 1.5em;
+}
+
+.foldershare-formatter-list {
+  margin-left: 1em;
+}
+.foldershare-formatter-list dt {
+  font-size: 1.05em;
+  font-weight: bold;
+  color: #000058;
+  clear: both;
+}
+
+/*
+ * Add a margin at the bottom of the help section.
+ */
+.foldershare-admin-help {
+  margin-bottom: 2em;
+}
+
+.foldershare-admin-help img {
+  float: right;
+}
+
+/*
+ * Style a footer containing a set of icons for institutions involved
+ * in creating the module.
+ */
+.foldershare-admin-footer {
+  margin-top: 2em;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50em;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.9em;
+  border-top: 1px solid #ccc;
+  clear: both;
+}
+.foldershare-admin-footer-icons {
+  text-align: center;
+  vertical-align: middle;
+  height: 72px;
+}
+.foldershare-admin-footer-icons img {
+  padding-left: 1em;
+  padding-right: 1em;
+  float: none;
+}
+
+/*
+ * Style the table-of-contents to be a tight list.
+ */
+ul.foldershare-toc,
+ul.foldershare-toc ul,
+ul.foldershare-toc li {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+ul.foldershare-toc {
+  margin-left: 2em;
+}

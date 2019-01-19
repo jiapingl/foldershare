@@ -1,0 +1,273 @@
+#
+# Defines routes to module pages.
+#
+# Module pages include pages that show specific entities (e.g. files
+# and folders), module settings, and administrator forms.
+#
+
+#-----------------------------------------------------------------------
+#
+# Reports pages.
+#
+#-----------------------------------------------------------------------
+
+#
+# Show module usage.
+# ------------------
+# The module usage page for content administrators shows a table of site
+# users and their current usage of the FolderShare module. The usage
+# information includes the number of files, folders, and root folders
+# owned by the user, and the total storage space used.
+#
+foldershare.reports.usage:
+  path: '/admin/reports/foldershare'
+  defaults:
+    _form: '\Drupal\foldershare\Form\AdminUsageReport'
+    _title: 'FolderShare usage report'
+  requirements:
+    _permission: 'administer foldershare'
+
+#-----------------------------------------------------------------------
+#
+# Module settings.
+#
+#-----------------------------------------------------------------------
+
+#
+# Show module settings.
+# ---------------------
+# The module settings page for site administrators shows multiple tabs of
+# settings that may be adjusted for the module. These include whether the
+# module uses a public or private file system for file storage, whether it
+# restricts filename extensions, and so on. The settings page also links
+# to many other relevant settings pages from other modules.
+#
+entity.foldershare.settings:
+  path: '/admin/structure/foldershare'
+  defaults:
+    _form: '\Drupal\foldershare\Form\AdminSettings'
+    _title: 'FolderShare'
+  requirements:
+    _permission: 'admin+administer site configuration'
+  options:
+    _admin_route: TRUE
+
+#-----------------------------------------------------------------------
+#
+# Folder lists.
+#
+#-----------------------------------------------------------------------
+
+#
+# Show personal root items.
+# -------------------------
+# This route presents a page listing root files and folders owned by the
+# current user, or shared with the current user.
+#
+entity.foldershare.rootitems:
+  path: '/foldershare'
+  defaults:
+    _controller: '\Drupal\foldershare\Controller\RootListController::listPersonalAndSharedRootItems'
+    _title: 'Personal files'
+    _description: 'Files owned by you or shared with you'
+  requirements:
+    _permission: 'view foldershare'
+    _user_is_logged_in: 'TRUE'
+
+#
+# Show public root items.
+# -----------------------
+# This route presents a page listing root files and folders that are owned
+# either (1) owned by "anonymous", or (2) shared with "anonymous".
+#
+entity.foldershare.rootitems.public:
+  path: '/foldershare/public'
+  defaults:
+    _controller: '\Drupal\foldershare\Controller\RootListController::listPublicRootItems'
+    _title: 'Public files'
+    _description: 'Files available to everyone'
+  requirements:
+    _permission: 'view foldershare'
+
+#
+# Show all root folders.
+# ----------------------
+# This route presents a page listing root folders that are owned by anyone.
+# The page is used by administrators to provide access to everything.
+#
+entity.foldershare.rootitems.all:
+  path: '/foldershare/all'
+  defaults:
+    _controller: '\Drupal\foldershare\Controller\RootListController::listAllRootItems'
+    _title: 'All files'
+    _description: 'Files owned by anyone'
+  requirements:
+    _permission: 'administer foldershare'
+    _user_is_logged_in: 'TRUE'
+
+#-----------------------------------------------------------------------
+#
+# User interface forms.
+#
+#-----------------------------------------------------------------------
+
+#
+# Edit entity.
+# ------------
+# The entity edit page uses the {foldershare} argument containing the
+# FolderShare object entity ID of a file or folder to edit. The form
+# presented for the entity supports changing the entity's description,
+# comment settings, and any fields added by the site administrator or
+# other modules. The page does not support editing the entity's title,
+# its location in the folder tree, the entity's ownership, or the
+# entity's root folder sharing configuration.
+#
+entity.foldershare.edit:
+  path: '/foldershare/{foldershare}/edit'
+  defaults:
+    _entity_form: foldershare.edit
+    _title: 'Edit Information'
+  requirements:
+    _entity_access: 'foldershare.update'
+    foldershare: \d+
+  options:
+    parameters:
+      foldershare:
+        type: entity:foldershare
+
+#
+# Prompt for command.
+# -------------------
+# A FolderShare "command" is an operation invoked from the GUI. Some
+# commands execute immediately (e.g. New folder), while others prompt the
+# user for confirmation (e.g. delete) or additional information (e.g.
+# Share). Commands that prompt forward to this route, which provides a
+# form shell to wrap a command-specific prompt.
+#
+# The {encoded} argument contains a base-64 encoded JSON associative array
+# of command arguments, including the current selection, parent, destination,
+# etc.
+#
+entity.foldersharecommand.plugin:
+  path: '/foldershare/command/{encoded}'
+  defaults:
+    _form: '\Drupal\foldershare\Form\CommandFormWrapper'
+  requirements:
+    _permission: 'admin+administer site configuration+administer foldershare+share foldershare+share public foldershare+author foldershare+view foldershare'
+  options:
+    parameters:
+      encoded:
+        type: string
+
+#-----------------------------------------------------------------------
+#
+# Entity pages.
+#
+# These pages present entities, including their fields and folder contents.
+#
+#-----------------------------------------------------------------------
+
+#
+# View entity.
+# ------------
+# The entity view route usaes the {foldershare} argument containing the
+# FolderShare object entity ID of a file or folder to show. The page
+# presented for the entity includes the entity's name as the page title,
+# the entity's displayed fields, and an embedded view table of a folder's
+# contents (for entities that are folders).
+#
+# The view page is available to users with the view permission and with
+# folder-base view access granted.
+#
+entity.foldershare.canonical:
+  path: '/foldershare/{foldershare}'
+  defaults:
+    _controller: '\Drupal\foldershare\Entity\Controller\FolderShareViewController::view'
+    _title_callback: '\Drupal\foldershare\Entity\Controller\FolderShareViewController::title'
+  requirements:
+    foldershare: \d+
+    _entity_access: 'foldershare.view'
+  options:
+    parameters:
+      foldershare:
+        type: entity:foldershare
+
+#-----------------------------------------------------------------------
+#
+# File downloads.
+#
+# These pages assist in downloading files.
+#
+#-----------------------------------------------------------------------
+
+#
+# Download file.
+# --------------
+# The file download route uses a {file} argument containing the File object
+# entity ID of a file to download. The file must be under management by
+# this module. The route requires module access permission (view, author, or
+# admin) along with folder-based access grants.
+#
+# The downloaded file has HTTP headers set to provide the user-visible
+# file name, the MIME type, the file size, and disabled web cache controls.
+#
+entity.foldershare.file:
+  path: '/foldershare/file/{file}'
+  defaults:
+    _controller: '\Drupal\foldershare\Controller\FileDownload::download'
+  options:
+    parameters:
+      file:
+        type: entity:file
+  requirements:
+    file: \d+
+    _permission: 'admin+administer foldershare+author foldershare+view foldershare'
+
+# Download entity or entities.
+# ----------------------------
+# The entity download route uses a special {encoded} argument that contains a
+# base-64 JSON array that lists FolderShare object entity IDs to download.
+# The route requires module access permission (view, author, or admin) along
+# with folder-based access grants.
+#
+# If the download requests a single file, that file is downloaded with HTTP
+# headers set to provide the user-visible file name, the MIME type, the file
+# size, and disabled web cache controls.
+#
+# If the download requests a folder or multiple files, those items are
+# ZIP-ed together and the ZIP file downloaded with HTTP headers set to provide
+# the ZIP file name, the MIME type, the ZIP file size, and disabled web
+# cache controls.
+#
+entity.foldershare.download:
+  path: '/foldershare/download/{encoded}'
+  defaults:
+    _controller: '\Drupal\foldershare\Controller\FolderShareDownload::download'
+  options:
+    parameters:
+      encoded:
+        type: string
+  requirements:
+    _permission: 'admin+administer foldershare+author foldershare+view foldershare'
+
+#-----------------------------------------------------------------------
+#
+# File uploads.
+#
+# These pages assist in uploading files.
+#
+#-----------------------------------------------------------------------
+
+#
+# Upload file.
+# ------------
+# This is a temporary route used by the command-line API for web services.
+# The API must upload a file using this form until Drupal's REST module is
+# updated to support file uploads.
+#
+entity.foldershare.upload:
+  path: '/foldershare/upload'
+  defaults:
+    _form: '\Drupal\foldershare\Form\FileUpload'
+  requirements:
+    _permission: 'admin+administer foldershare+author foldershare'

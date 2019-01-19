@@ -1,0 +1,145 @@
+/**
+ * @file
+ * FolderShare administrator usage report page styling.
+ */
+
+/*
+ * Shade a toolbar atop the usage table.
+ */
+.foldershare-admin-usage-table-rebuild-bar {
+  padding: 3px 4px 4px 4px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #aaa;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(#e5e3e6, #d5d4d5);
+}
+
+/*
+ * Position the most recent update time to the right.
+ */
+.foldershare-admin-usage-table-rebuild-time {
+  display: inline-block;
+  float: right;
+  padding-top: 4px;
+}
+.foldershare-admin-usage-table-rebuild-bar.form-group {
+  margin: 0;
+}
+.foldershare-admin-usage-table-rebuild-bar .form-actions {
+  padding-top: 0;
+}
+
+/*
+ * Position the rebuild button to the left. Shade the button and give it
+ * an icon.
+ */
+.foldershare-admin-usage-table-rebuild-bar .form-actions {
+  display: inline-block;
+  margin: 0;
+}
+.foldershare-admin-usage-table-rebuild-button {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  height: 24px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.1);
+  background: #fff url("../images/rebuild-button-icon.normal.18x16.png") no-repeat center center !important;
+}
+.foldershare-admin-usage-table-rebuild-button:hover {
+  background: #fff url("../images/rebuild-button-icon.hover.18x16.png") no-repeat center center !important;
+}
+
+/*
+ * Add a border around the table and some space below.
+ */
+.foldershare-admin-usage-table {
+  clear: both;
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 0;
+  width: 100%;
+  border-collapse: collapse;
+  border: 2px solid #ccc;
+}
+
+/*
+ * Lighten the header background and remove link text decorations.
+ */
+.foldershare-admin-usage-table thead tr th {
+  border: none;
+  border-right: 1px solid #cfcfcf;
+  border-bottom: 1px solid #cfcfcf;
+  /* Override default browser styling that makes table headings bold. */
+  font-weight: normal;
+  /* Override Drupal's style.css and lighten the background color. */
+  background: #ececec;
+  color: #000;
+}
+.foldershare-admin-usage-table thead tr th a:hover,
+.foldershare-admin-usage-table thead tr th a:focus,
+.foldershare-admin-usage-table thead tr th a {
+  /* Override Drupal's elements.css to remove table header underlines. */
+  text-decoration: none;
+  border-bottom: none;
+  color: #000;
+}
+
+/*
+ * Tighten table row spacing and lighten row backgrounds.
+ */
+.foldershare-admin-usage-table tr td,
+.foldershare-admin-usage-table tr.odd td,
+.foldershare-admin-usage-table tr.even td {
+  /* Override Drupal's style.css to reduce row padding from 0.5em. */
+  padding: 0 5px 0 5px;
+  min-height: 16px;
+  /* Override Drupal's style.css to get rid of cell borders. */
+  border: 0;
+}
+.foldershare-admin-usage-table tr:nth-child(odd),
+.foldershare-admin-usage-table tr.odd {
+  /* Override Drupal's table.css to make odd rows slightly darker. */
+  background: rgba(0,0,0,0.04);
+}
+.foldershare-admin-usage-table tr:nth-child(even),
+.foldershare-admin-usage-table tr.even {
+  /* Override Drupal's table.css to make even rows transparent. */
+  background: rgba(0,0,0,0.00);
+}
+.foldershare-admin-usage-table thead tr td.is-active {
+  /*
+   * Get rid of the tablesort.css background color on the current
+   * sort column. The arrow on the column header is sufficient.
+   */
+  background-color: transparent;
+}
+
+/*
+ * Right-align numeric columns.
+ */
+.foldershare-admin-usage-table-roots,
+.foldershare-admin-usage-table-folders,
+.foldershare-admin-usage-table-files,
+.foldershare-admin-usage-table-bytes {
+  text-align: right;
+  width: 8em;
+}
+
+/*
+ * Highlight the total row at the bottom of the table.
+ */
+.foldershare-admin-usage-table-total {
+  font-weight: bold;
+  border-bottom: 0;
+}
+.foldershare-admin-usage-table tr.foldershare-admin-usage-table-total td {
+  border-top: 1px solid #cfcfcf;
+  background: #ececec;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "drupal/foldershare",
+  "type": "drupal-module",
+  "description": "Manages shared folders within a virtual file system of files and subfolders.",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0-or-later",
+  "homepage": "https://www.drupal.org/project/foldershare",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/foldershare",
+    "source": "http://cgit.drupalcode.org/foldershare"
+  },
+  "require": { }
+}

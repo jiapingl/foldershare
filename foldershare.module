@@ -1,0 +1,87 @@
+<?php
+
+/**
+ * @file
+ * Implements the principal entry points and hooks for the module.
+ *
+ * @ingroup foldershare
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+
+use Drupal\foldershare\Constants;
+use Drupal\foldershare\Entity\FolderShare;
+use Drupal\foldershare\Entity\Controller\FolderShareViewController;
+
+require 'foldershare.help.inc';
+require 'foldershare.tokens.inc';
+require 'foldershare.user.inc';
+require 'foldershare.theme.inc';
+require 'foldershare.file.inc';
+require 'foldershare.search.inc';
+require 'foldershare.views.inc';
+
+
+/*----------------------------------------------------------------------
+ *
+ * Define pseudo-entities.
+ *
+ * Pseudo-field handling for the field UI module's "Manage fields" and
+ * "Manage display" pages is forwarded to the FolderShareViewController
+ * class, which handles the presentation of an entity.
+ *
+ *----------------------------------------------------------------------*/
+
+/**
+ * Implements hook_entity_extra_field_info().
+ *
+ * Forward to the FolderShareViewController class.
+ */
+function foldershare_entity_extra_field_info() {
+  return FolderShareViewController::getEntityExtraFieldInfo();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ *
+ * Forward to the FolderShareViewController class.
+ */
+function foldershare_foldershare_view(
+  array &$build,
+  EntityInterface $entity,
+  EntityViewDisplayInterface $display,
+  string $viewMode) {
+
+  return FolderShareViewController::getFolderShareView(
+    $build,
+    $entity,
+    $display,
+    $viewMode);
+}
+
+/*----------------------------------------------------------------------
+ *
+ * Handle module uninstall.
+ *
+ *----------------------------------------------------------------------*/
+
+/**
+ * Implements hook_preuninstall().
+ *
+ * The module's directory tree of saved files is deleted.
+ */
+function foldershare_preuninstall($module) {
+  if ($module !== Constants::MODULE) {
+    return;
+  }
+
+  // Remove the work queue.
+  $queue = \Drupal::queue(Constants::WORK_QUEUE, TRUE);
+  $queue->deleteQueue();
+
+  // Get the base URI for the directories containing the module's files.
+  // Then remove them.
+  $uri = FolderShare::getBaseFileUri();
+  file_unmanaged_delete_recursive($uri);
+}

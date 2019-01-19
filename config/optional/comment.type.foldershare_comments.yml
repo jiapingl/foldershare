@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - foldershare
+  module:
+    - foldershare
+id: foldershare_comments
+label: 'FolderShare comments'
+target_entity_type_id: foldershare
+description: 'Allows commenting on files and folders.'

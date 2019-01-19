@@ -1,0 +1,76 @@
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - foldershare
+  module:
+    - drupal:file
+    - drupal:image
+    - drupal:media
+    - drupal:text
+    - drupal:user
+id: foldershare.foldershare.default
+targetEntityType: foldershare
+bundle: foldershare
+mode: default
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 5
+    region: content
+    settings:
+      cropHeight: 8em
+    third_party_settings: {  }
+  file:
+    label: hidden
+    type: file_default
+    weight: 2
+    region: content
+    settings:
+      linkToEntity: '1'
+      emptyIfUnrecognized: 0
+    third_party_settings: {  }
+  folder_table:
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  image:
+    label: hidden
+    type: image
+    weight: 3
+    region: content
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  media:
+    label: hidden
+    type: media_thumbnail
+    weight: 4
+    region: content
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+  sharing_status:
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  changed: true
+  created: true
+  folder_path: true
+  grantauthoruids: true
+  grantviewuids: true
+  id: true
+  kind: true
+  mime: true
+  name: true
+  parentid: true
+  rootid: true
+  size: true
+  uid: true

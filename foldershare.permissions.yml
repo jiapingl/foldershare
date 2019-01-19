@@ -1,0 +1,26 @@
+#
+# Declares role-based access permissions for FolderShare, including
+# those to administer the module, view and author content, and share
+# content with other users and the public.
+#
+
+administer foldershare:
+  title: 'Administer files and folders'
+  description: '<div style="margin-left: 1em;"><p>Users with this permission may create, delete, and modify their own content and content owned by any user. They may change ownership and sharing settings for specific content, but they cannot change module settings for the site.</p><p>This permission is usually only granted to site administrators, content moderators, and those handling customer support. It enables a user to moderate content and fix problems. It should <strong>not</strong> be granted to all users or anonymous users.</p></div>'
+  restrict access: TRUE
+
+author foldershare:
+  title: 'Author files and folders'
+  description: '<div style="margin-left: 1em;"><p>Users with this permission may create, delete, and modify their own content. When a user has this permission and they are also granted author access to specific shared content, the user may create, delete, and modify that shared content too.</p><p>This permission is usually only enabled for authenticated users.</p></div>'
+
+share foldershare:
+  title: 'Share files and folders with other users'
+  description: '<div style="margin-left: 1em;"><p>Users with this permission may share specific content with other users, granting selected users view and (optionally) author access. Users granted view access to shared content may view and download the content. Users granted author access may created, delete, and modify the shared content.</p><p>This permission is usually enabled for all authenticated users.</p><p>Sites that do not need content sharing can disable this permission for all user roles. Users will still be able to access their own content.</p></div>'
+
+share public foldershare:
+  title: 'Share files and folders with the public'
+  description: '<div style="margin-left: 1em;"><p>Users with this permission may share specific content with anonymous "public" users that do not have accounts on the site. Anonymous users can only be granted view access, not author access.</p><p>This permission is usually only granted to trusted content authors who have responsability for general site content, such as documentation, released software, press kits, and so forth.</p><p>Sites that do not want users to share content for anonymous access can disable this permission for all user roles. Anonymous users will still be able to access content owned by the anonymous user, if any.</p></div>'
+
+view foldershare:
+  title: 'View files and folders'
+  description: '<div style="margin-left: 1em;"><p>Users with this permission may view and download their own content. When a user has this permission and they are also granted view access to specific shared content, the user may view and download that shared content too.</p><p>This permission is usually granted to all users, including the anonymous user.</p><p>If the anonymous user does not have view permission, then site visitors that do not have accounts cannot view any files and folders.</p></div>'

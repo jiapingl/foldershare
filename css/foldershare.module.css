@@ -1,0 +1,1328 @@
+/**
+ * Module-wide base styling
+ * ------------------------
+ * Defines base styling for the module's presentation of content.
+ */
+
+/*-----------------------------------------------------------------------
+ *
+ * Generic.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-warning {
+  color: #b00;
+}
+
+a.foldershare-hidden-entity,
+a.foldershare-hidden-entity:link,
+a.foldershare-hidden-entity:visited,
+.foldershare-hidden-entity {
+  text-decoration: line-through;
+}
+a.foldershare-hidden-entity:hover {
+  text-decoration: line-through underline;
+}
+
+.foldershare-disabled-entity {
+  opacity: 0.5;
+}
+
+.foldershare-message-summary {
+  font-weight: bold;
+}
+.foldershare-message-body {
+  margin: 0;
+  padding: 0;
+  font-size: 0.9em;
+}
+.foldershare-message-details {
+  margin: 0.5em 0 0.5em 0;
+  font-size: 0.9em;
+  line-height: 1.3em;
+}
+.foldershare-message-details p {
+  padding: 0.5em;
+  margin: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Main UI:
+ * - Command menu button.
+ * - Command menu shown via the menu button.
+ *
+ *-----------------------------------------------------------------------*/
+
+/*
+ * Remove default spacing around the main form and make it an inline
+ * block so that it flows into the toolbar.
+ */
+.foldershare-folder-table-menu-form {
+  display: inline-block;
+  margin-bottom: 0;
+}
+.foldershare-folder-table-menu.form-group,
+.foldershare-folder-table-menu {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/*
+ * Give the menu button a border, shadow and icon. Hide the menu button
+ * text since we're using an icon.
+ */
+.foldershare-folder-table-mainmenu-button {
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  width: 37px;
+  height: 24px;
+  background: #fff url("../images/menu-icon.normal.27x16.png") no-repeat center center !important;
+}
+.foldershare-folder-table-mainmenu-button:hover {
+  background: #fff url("../images/menu-icon.hover.27x16.png") no-repeat center center !important;
+}
+.foldershare-folder-table-mainmenu-button span {
+  display: none;
+}
+
+.foldershare-folder-table-mainmenu-button-disabled,
+.foldershare-folder-table-mainmenu-button-disabled:hover {
+  background: #fff url("../images/menu-icon.disabled.27x16.png") no-repeat center center !important;
+}
+
+@media (max-width: 640px) {
+  /*
+   * Use a larger finger-sized button on smaller screens.
+   */
+  .foldershare-folder-table-mainmenu-button {
+    width: 66px;
+    height: 44px;
+  }
+}
+
+/*
+ * Give the menu a border and shadow.
+ */
+.foldershare-folder-table-mainmenu,
+.foldershare-folder-table-mainmenu.ui-menu,
+.foldershare-folder-table-mainmenu.ui-widget,
+.foldershare-folder-table-mainmenu.ui-widget-content,
+.foldershare-folder-table-contextmenu,
+.foldershare-folder-table-contextmenu.ui-menu,
+.foldershare-folder-table-contextmenu.ui-widget,
+.foldershare-folder-table-contextmenu.ui-widget-content {
+  /* Override Drupal's theme.css to use the site's font for menus. */
+  font-family: inherit;
+  font-size: inherit;
+  /* Override Drupal's theme.css and give the menu a border. */
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #aaa;
+  border-radius: 5px;
+  /* Override Drupal's style.css to get rid of huge padding. */
+  padding: 0;
+}
+
+.foldershare-folder-table-mainmenu,
+.foldershare-folder-table-contextmenu {
+  /* Prepare the menu for positioning relative to the menu button */
+  position: absolute;
+  z-index: 1000;
+}
+
+/*
+ * Override menu.css so that menu items don't change their margins
+ * and borders when they get the focus. This causes the menu to
+ * jump about in an odd way.
+ */
+.foldershare-folder-table-mainmenu .ui-state-focus,
+.foldershare-folder-table-mainmenu .ui-state-active,
+.foldershare-folder-table-contextmenu .ui-state-focus,
+.foldershare-folder-table-contextmenu .ui-state-active {
+  margin: 0;
+  border: none;
+}
+
+/*
+ * Clean up menu item spacing.
+ */
+.foldershare-folder-table-mainmenu .ui-menu-item,
+.foldershare-folder-table-contextmenu .ui-menu-item {
+  border: none;
+  white-space: nowrap;
+  list-style: none;
+  list-style-image: none;
+  padding: 0;
+}
+.foldershare-folder-table-mainmenu .ui-menu-item-wrapper,
+.foldershare-folder-table-contextmenu .ui-menu-item-wrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+/*-----------------------------------------------------------------------
+ *
+ * Command forms.
+ *
+ *-----------------------------------------------------------------------*/
+
+form.drupal-foldershare-form-editcommand {
+  /* Style the pseudo-dialog for command response forms. */
+  margin-top: 5px;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.25);
+  clear: both;
+  padding: 10px;
+}
+form.drupal-foldershare-form-editcommand p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+form.drupal-foldershare-form-editcommand .edit-description,
+form.drupal-foldershare-form-editcommand .description {
+  font-style: italic;
+}
+form.drupal-foldershare-form-editcommand .form-actions {
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  background: #f0f0f0;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-bottom: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+form.drupal-foldershare-form-editcommand .form-item-foldershare-rename input {
+  display: inline-block;
+  width: 100%;
+}
+
+form.drupal-foldershare-form-editcommand .form-item-foldershare-destination {
+  margin-bottom: 0.5em;
+}
+form.drupal-foldershare-form-editcommand .form-item-foldershare-destination select {
+  width: 100%;
+}
+form.drupal-foldershare-form-editcommand .foldershare-open-folder {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 10em;
+  width: 10em;
+}
+
+.foldershare-ui-dialog.ui-dialog {
+  min-width: 500px;
+  max-width: 600px;
+  min-height: 100px;
+}
+.foldershare-ui-dialog .ui-dialog-content {
+  padding: 1em 1em 0.5em 1em;
+  /* dialog.css sets position to relative. Unfortunately, if the dialog has
+   * a pull-down menu (such as for autocomplete), and that menu has an
+   * absolute position, the menu is cropped by the content div instead of
+   * continuing out and above it. We have to set the content position to
+   * static to make it work as it should.
+   */
+  position: static;
+}
+.foldershare-dialog.foldersharecommand_share {
+  overflow: auto;
+  height: 500px !important;
+}
+
+.foldershare-ui-dialog form.drupal-foldershare-form-editcommand {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+}
+.foldershare-ui-dialog form.drupal-foldershare-form-editcommand .form-actions {
+  border: none;
+}
+
+#edit-search-file-content-related {
+  margin-left: 16px;
+}
+
+#edit-help-link {
+  display: block;
+  margin-bottom: 1em;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Change owner form.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-ui-dialog .foldersharecommand_change_owner .form-item-owner {
+  margin-top: 0;
+}
+.foldersharecommand_change_owner .form-item-owner {
+  margin-bottom: 0;
+  display: flex;
+  flex-flow: row wrap;
+}
+.foldersharecommand_change_owner .form-item-owner label {
+  width: 7em;
+}
+.foldersharecommand_change_owner .form-item-owner input[type="text"] {
+  flex-grow: 1;
+}
+.foldersharecommand_change_owner .form-item-changedescendants {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  padding-left: 7em;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Copy form.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-ui-dialog .foldersharecommand_copy p {
+  margin-top: 0;
+}
+.foldersharecommand_copy p {
+  margin-bottom: 1em;
+}
+
+.foldersharecommand_copy .form-item-destination select {
+  width: 100%;
+}
+.foldersharecommand_copy input[type="submit"] {
+  margin-left: auto;
+  margin-right: auto;
+}
+.foldersharecommand_copy .hidden {
+  display: none;
+}
+.foldersharecommand_copy .file {
+  /* Prevent Bootstrap themes from messing up the table layout. */
+  display: inline-block;
+  font-size: 1em;
+  margin: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Delete form.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-ui-dialog .foldersharecommand_delete p {
+  margin-top: 0;
+}
+.foldersharecommand_delete p {
+  margin-bottom: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Move form.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-ui-dialog .foldersharecommand_move p {
+  margin-top: 0;
+}
+.foldersharecommand_move p {
+  margin-bottom: 1em;
+}
+.foldersharecommand_move .hidden {
+  display: none;
+}
+.foldersharecommand_move .file {
+  /* Prevent Bootstrap themes from messing up the table layout. */
+  display: inline-block;
+  font-size: 1em;
+  margin: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Rename form.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-ui-dialog .foldersharecommand_rename .form-item-rename {
+  margin-top: 0;
+}
+.foldersharecommand_rename .form-item-rename {
+  margin-bottom: 0;
+  display: flex;
+  flex-flow: row wrap;
+}
+.foldersharecommand_rename .form-item-rename label {
+  width: 7em;
+}
+.foldersharecommand_rename .form-item-rename input[type="text"] {
+  flex-grow: 1;
+}
+.foldersharecommand_rename .rename-description {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  padding-left: 7em;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Release share form.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-ui-dialog .foldersharecommand_release_share p {
+  margin-top: 0;
+}
+.foldersharecommand_release_share p {
+  margin-bottom: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Share form.
+ *
+ * These rules style the sharing form and its list of users.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-ui-dialog .foldersharecommand_share p {
+  margin-top: 0;
+}
+.foldersharecommand_share p {
+  margin-bottom: 1em;
+}
+
+.foldershare-share-table thead {
+  display: none;
+}
+
+.foldershare-share-table th {
+  /* Get rid of bold table headings. */
+  font-weight: normal;
+}
+
+.foldershare-share-table tr th,
+.foldershare-share-table tr.odd td,
+.foldershare-share-table tr.even td {
+  /* Override Drupal's style.css to remove borders. */
+  border: none;
+  background: none;
+  padding: 0 5px 0 5px;
+}
+.foldershare-share-table tr.odd.foldershare-share-row,
+.foldershare-share-table tr.even.foldershare-share-row {
+  background: none;
+  border-top: 1px solid #ccc;
+}
+.foldershare-share-table tr.foldershare-share-subheader {
+  background: none;
+  border: none;
+}
+
+.foldershare-share-table thead tr th:nth-child(1),
+.foldershare-share-table tbody tr td:nth-child(1) {
+  width: 100%;
+}
+.foldershare-share-table thead tr th:nth-child(2),
+.foldershare-share-table tbody tr td:nth-child(2) {
+  min-width: 13em;
+  white-space: nowrap;
+}
+.foldershare-share-table .foldershare-share-subheader span,
+.foldershare-share-table .foldershare-share-row .form-radios .form-item {
+  display: inline-block;
+  min-width: 4em;
+}
+.foldershare-share-table .foldershare-share-row .description {
+  font-style: italic;
+  padding-left: 1em;
+}
+
+/*
+ * Bootstrap-based themes wrap every form element in a <div>.
+ * Unfortunately, when creating horizontal rows of radio buttons,
+ * like in this form, each of those <div>s become blocks and the
+ * radio buttons end up lined up vertically, not horizontally.
+ */
+.foldershare-share-table tr.foldershare-share-row td div.form-item,
+.foldershare-share-table tr.foldershare-share-row td div.radio {
+  display: inline;
+  position: static;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+}
+.foldershare-share-table tr.foldershare-share-row td div.form-item label,
+.foldershare-share-table tr.foldershare-share-row td div.radio label {
+  display: inline;
+}
+.foldershare-share-table tr.foldershare-share-row td div.form-item input,
+.foldershare-share-table tr.foldershare-share-row td div.radio input {
+  position: static;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+/*-----------------------------------------------------------------------
+ *
+ * Entity page.
+ *
+ * These rules style the entity view page.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-content .field--type-entity-reference .field__label {
+  /* Override field.css to give entity reference labels normal styling. */
+  font-size: inherit;
+  font-weight: bold;
+  padding-right: 0.5em;
+}
+.foldershare-content .field--type-entity-reference {
+  /* Override field.css to give entity reference values normal styling. */
+  font-family: inherit;
+  margin: 0;
+}
+
+.foldershare-content .field__label {
+  /*
+   * Make all field labels of similar width. This only works for the
+   * common labels, which are fairly short.
+   */
+  min-width: 8em;
+}
+
+.foldershare-sharing-status {
+  /*
+   * The sharing status pseudo-field is intended to work as a subtitle
+   * when placed at the top of the page's content.
+   */
+  font-style: italic;
+  color: #888;
+}
+
+.foldershare-folder-path,
+.foldershare-folder-path .form-item {
+  margin: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Table toolbar.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-toolbar.form-group,
+.foldershare-toolbar {
+  /* Add a border and spacing to give the area a toolbar-ish style. */
+  margin-top: 5px;
+  margin-bottom: 0;
+  padding: 3px 4px 4px 4px;
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #aaa;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(#e5e3e6, #d5d4d5);
+  line-height: 1em;
+}
+
+.foldershare-nonfolder-table .foldershare-toolbar {
+  /*
+   * When the toolbar is on a non-folder page, there is no contents table
+   * below the toolbar, so remove the toolbar styling.
+   */
+  background: none;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Search box on the toolbar.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-searchbox-form {
+  /* Slide the search box to the right on the toolbar */
+  display: inline-block;
+  float: right;
+}
+.foldershare-searchbox-form input[type="hidden"],
+.foldershare-searchbox-form input[type="hidden"].form-control {
+  /* Bootstrap themes add elements that mess up tight UI arrangements. */
+  display: none;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  padding: 0;
+}
+
+.foldershare-searchbox {
+  display: inline;
+}
+.foldershare-searchbox.form-group {
+  margin: 0;
+}
+.foldershare-searchbox-keywords.form-control {
+  display: inline-block;
+}
+.foldershare-searchbox label.control-label,
+.foldershare-searchbox label {
+  display: none;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+.foldershare-searchbox-submit.button,
+.foldershare-searchbox .form-item-foldershare-searchbox-submit {
+  /* The search form's submit button should never be shown. */
+  display: none;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  padding: 0;
+}
+
+.foldershare-searchbox .form-item-foldershare-searchbox-keywords {
+  display: inline;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 4px;
+  margin-right: 0;
+  color: #000;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.foldershare-searchbox input[type="search"] {
+  /* This may be overridden by browser-specific search field styling. */
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  border-radius: 4px 4px 4px 4px;
+  padding-left: 8px;
+  padding-right: 2px;
+  font-weight: normal;
+}
+
+.foldershare-searchbox .form-item div.description {
+  /*
+   * Bootstrap themes add a search box explanation that is not needed
+   * and messes up formatting. Hide it.
+   */
+  margin: 0;
+  display: none;
+}
+
+/*
+ * Search input on the folder contents table toolbar.
+ */
+.foldershare-searchbox input[type="search"] {
+  /*
+   * Override Drupal's normalize.css to restore browser-specific search
+   * field appearance.
+   *
+   * On Firefox and Safari, this restores the magnifying glass icon and
+   * rounded search box styling.
+   */
+  -webkit-appearance: searchfield;
+  -moz-appearance: searchfield;
+  box-sizing: border-box;
+}
+
+.foldershare-searchbox input[type="search"]::-webkit-search-decoration {
+  /*
+   * Override Drupal's normalize.css to restore browser-specific search
+   * field appearance.
+   *
+   * On Safari, this restores the spelling suggestion menu.
+   */
+  -webkit-appearance: searchfield-decoration;
+}
+.foldershare-searchbox input[type="search"]::-webkit-search-cancel-button {
+  /*
+   * Override Drupal's normalize.css to restore browser-specific search
+   * field appearance.
+   *
+   * On Safari and Chrome, this restores the (x) cancel button after text
+   * has been entered.
+   */
+  -webkit-appearance: searchfield-cancel-button;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Ancestor menu on the toolbar:
+ * - Ancestor menu button.
+ * - Ancestor menu shown via the menu button.
+ *
+ *-----------------------------------------------------------------------*/
+
+/*
+ * Remove default spacing around the form and make it an inline
+ * block so that it flows into the toolbar.
+ */
+.foldershare-ancestormenu.form-group,
+.foldershare-ancestormenu {
+  display: inline-block;
+  margin: 0;
+}
+
+/*
+ * Give the menu button a border, shadow and icon. Hide the menu button
+ * text since we're using an icon.
+ */
+.foldershare-ancestormenu-menu-button {
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #aaa;
+  box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  width: 37px;
+  height: 24px;
+  background: #fff url("../images/ancestor-icon.normal.27x16.png") no-repeat center center !important;
+}
+.foldershare-ancestormenu-menu-button:hover {
+  background: #fff url("../images/ancestor-icon.hover.27x16.png") no-repeat center center !important;
+}
+.foldershare-ancestormenu-menu-button span {
+  display: none;
+}
+
+@media (max-width: 640px) {
+  /*
+   * Use a larger finger-sized button on smaller screens.
+   */
+  .foldershare-ancestormenu-menu-button {
+    width: 66px;
+    height: 44px;
+  }
+}
+
+/*
+ * Give the menu a border, shadow, and default color, clean up spacing,
+ * and make the menu positionable so that it can be placed relative to
+ * the menu button each time the menu is shown.
+ */
+.foldershare-ancestormenu-menu,
+.foldershare-ancestormenu-menu .ui-menu,
+.foldershare-ancestormenu-menu .ui-widget,
+.foldershare-ancestormenu-menu .ui-widget-content,
+.foldershare-ancestormenu-menu.ui-menu,
+.foldershare-ancestormenu-menu.ui-widget,
+.foldershare-ancestormenu-menu.ui-widget-content {
+  /* Override Drupal's theme.css to use the site's font for menus. */
+  font-family: inherit;
+  font-size: inherit;
+  /* Override Drupal's theme.css and give the menu a border. */
+  border-top: 1px solid #ddd;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #bbb;
+  border-bottom: 1px solid #aaa;
+  border-radius: 5px;
+  /* Override Drupal's style.css to get rid of huge padding. */
+  padding: 0;
+}
+
+.foldershare-ancestormenu-menu {
+  /* Prepare the menu for positioning relative to the menu button */
+  position: absolute;
+  z-index: 1000;
+}
+
+/*
+ * Override menu.css so that menu items don't change their margins
+ * and borders when they get the focus. This causes the menu to
+ * jump about in an odd way.
+ */
+.foldershare-ancestormenu-menu .ui-state-focus,
+.foldershare-ancestormenu-menu .ui-state-active {
+  margin: 0;
+  border: none;
+}
+
+/*
+ * Clean up menu item spacing and insure there is room for the folder icon
+ * beside each item.
+ */
+.foldershare-ancestormenu-menu .ui-menu-item {
+  border: none;
+  white-space: nowrap;
+  list-style: none;
+  list-style-image: none;
+  padding: 0;
+}
+.foldershare-ancestormenu-menu .ui-menu-item-wrapper {
+  padding-left: 10px;
+  padding-right: 22px;
+  min-height: 16px;
+}
+.foldershare-ancestormenu-menu .ui-menu-item-wrapper .file {
+  width: 20px;
+  padding: 0;
+  background-position: left bottom;
+  display: inline-block;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Contents table.
+ *
+ * These rules style the views-generated table of entity children of
+ * a folder entity.
+ *
+ * For themes based upon Drupal core's "Classy", Views tables are marked
+ * with the ".views-table" class. For other themes, the table has no
+ * well-known class and we must rely upon a nesting order.
+ *
+ * For themes that use "Bootstrap", tables are often wrapped in an
+ * extra <div>. Again, there is no well-known class we can use, so we
+ * have to rely upon selecting based upon a nesting order.
+ *
+ *-----------------------------------------------------------------------*/
+
+.foldershare-folder-selection-table,
+.foldershare-folder-table {
+  /* Add a border around the table. */
+  clear: both;
+  margin-top: 0;
+  margin-bottom: 1em;
+  padding: 0;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0 0 4px 4px;
+}
+div.foldershare-search-results {
+  margin-top: 5px;
+  border-radius: 0;
+  border-top: 1px solid #ccc;
+}
+
+/*
+ * Folder listing table.
+ */
+div.foldershare-folder-selection-table table.views-table,
+div.foldershare-folder-selection-table div.views-form > form > table,
+div.foldershare-folder-selection-table div.views-form > form > div > table,
+div.foldershare-folder-table table.views-table,
+div.foldershare-folder-table div.views-form > form > table,
+div.foldershare-folder-table div.views-form > form > div > table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  /* Add a border around the table that highlights during drags. */
+  border: 2px solid #ccc;
+  /* Override Drupal's table.css to use the site theme's font. */
+  font-family: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.foldershare-search-results table.views-table {
+  border: none;
+}
+
+div.foldershare-search-results table.views-table thead tr,
+div.foldershare-folder-selection-table table.views-table thead tr,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr,
+div.foldershare-folder-table table.views-table thead tr,
+div.foldershare-folder-table div.views-form > form > table thead tr,
+div.foldershare-folder-table div.views-form > form > div > table thead tr {
+  /* Use the same border color as for the table to add visual unity. */
+  border-bottom: 1px solid #ccc;
+}
+div.foldershare-search-results table.views-table thead tr,
+div.foldershare-search-results table.views-table tbody tr,
+div.foldershare-search-results table.views-table tfoot tr,
+div.foldershare-folder-selection-table table.views-table thead tr,
+div.foldershare-folder-selection-table table.views-table tbody tr,
+div.foldershare-folder-selection-table table.views-table tfoot tr,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr,
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr,
+div.foldershare-folder-selection-table div.views-form > form > table tfoot tr,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr,
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr,
+div.foldershare-folder-selection-table div.views-form > form > div > table tfoot tr,
+div.foldershare-folder-table table.views-table thead tr,
+div.foldershare-folder-table table.views-table tbody tr,
+div.foldershare-folder-table table.views-table tfoot tr,
+div.foldershare-folder-table div.views-form > form > table thead tr,
+div.foldershare-folder-table div.views-form > form > table tbody tr,
+div.foldershare-folder-table div.views-form > form > table tfoot tr,
+div.foldershare-folder-table div.views-form > form > div > table thead tr,
+div.foldershare-folder-table div.views-form > form > div > table tbody tr,
+div.foldershare-folder-table div.views-form > form > div > table tfoot tr {
+  /*
+   * Override Drupal's style.css to get rid of big vertical padding and
+   * make rows narrower and better for a file listing.
+   */
+  padding: 0;
+}
+div.foldershare-search-results table.views-table thead tr td,
+div.foldershare-search-results table.views-table tbody tr td,
+div.foldershare-search-results table.views-table tfoot tr td,
+div.foldershare-folder-selection-table table.views-table thead tr td,
+div.foldershare-folder-selection-table table.views-table tbody tr td,
+div.foldershare-folder-selection-table table.views-table tfoot tr td,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr td,
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr td,
+div.foldershare-folder-selection-table div.views-form > form > table tfoot tr td,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr td,
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr td,
+div.foldershare-folder-selection-table div.views-form > form > div > table tfoot tr td,
+div.foldershare-folder-table table.views-table thead tr td,
+div.foldershare-folder-table table.views-table tbody tr td,
+div.foldershare-folder-table table.views-table tfoot tr td,
+div.foldershare-folder-table div.views-form > form > table thead tr td,
+div.foldershare-folder-table div.views-form > form > table tbody tr td,
+div.foldershare-folder-table div.views-form > form > table tfoot tr td,
+div.foldershare-folder-table div.views-form > form > div > table thead tr td,
+div.foldershare-folder-table div.views-form > form > div > table tbody tr td,
+div.foldershare-folder-table div.views-form > form > div > table tfoot tr td {
+  /* Override Drupal's style.css to reduce row padding from 0.5em. */
+  padding: 0 5px 0 5px;
+  min-height: 16px;
+  /* Override Drupal's style.css to get rid of cell borders. */
+  border: 0;
+}
+div.foldershare-search-results table.views-table thead tr,
+div.foldershare-folder-selection-table table.views-table thead tr,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr,
+div.foldershare-folder-table table.views-table thead tr,
+div.foldershare-folder-table div.views-form > form > table thead tr,
+div.foldershare-folder-table div.views-form > form > div > table thead tr {
+  text-align: left;
+}
+div.foldershare-search-results table.views-table thead tr th,
+div.foldershare-folder-selection-table table.views-table thead tr th,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr th,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr th,
+div.foldershare-folder-table table.views-table thead tr th,
+div.foldershare-folder-table div.views-form > form > table thead tr th,
+div.foldershare-folder-table div.views-form > form > div > table thead tr th {
+  border: none;
+  border-right: 1px solid #cfcfcf;
+  /* Override default browser styling that makes table headings bold. */
+  font-weight: normal;
+  /* Override Drupal's style.css and lighten the background color. */
+  background: #ececec;
+  color: #000;
+}
+div.foldershare-search-results table.views-table thead tr th a,
+div.foldershare-folder-selection-table table.views-table thead tr th a,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr th a,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr th a,
+div.foldershare-folder-table table.views-table thead tr th a,
+div.foldershare-folder-table div.views-form > form > table thead tr th a,
+div.foldershare-folder-table div.views-form > form > div > table thead tr th a {
+  color: #000;
+}
+
+div.foldershare-folder-selection-table table.views-table tbody tr:nth-child(odd),
+div.foldershare-folder-selection-table table.views-table tbody tr.odd,
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr:nth-child(odd),
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr.odd,
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr:nth-child(odd),
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr.odd,
+div.foldershare-folder-table table.views-table tbody tr:nth-child(odd),
+div.foldershare-folder-table table.views-table tbody tr.odd,
+div.foldershare-folder-table div.views-form > form > table tbody tr:nth-child(odd),
+div.foldershare-folder-table div.views-form > form > table tbody tr.odd,
+div.foldershare-folder-table div.views-form > form > div > table tbody tr:nth-child(odd),
+div.foldershare-folder-table div.views-form > form > div > table tbody tr.odd {
+  /* Override Drupal's table.css to make odd rows slightly darker. */
+  background: rgba(0,0,0,0.04);
+}
+div.foldershare-folder-selection-table table.views-table tbody tr:nth-child(even),
+div.foldershare-folder-selection-table table.views-table tbody tr.even,
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr:nth-child(even),
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr.even,
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr:nth-child(even),
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr.even,
+div.foldershare-folder-table table.views-table tbody tr:nth-child(even),
+div.foldershare-folder-table table.views-table tbody tr.even,
+div.foldershare-folder-table div.views-form > form > table tbody tr:nth-child(even),
+div.foldershare-folder-table div.views-form > form > table tbody tr.even,
+div.foldershare-folder-table div.views-form > form > div > table tbody tr:nth-child(even),
+div.foldershare-folder-table div.views-form > form > div > table tbody tr.even {
+  /* Override Drupal's table.css to make even rows transparent. */
+  background: rgba(0,0,0,0.00);
+}
+
+div.foldershare-folder-selection-table table.views-table thead tr th a:hover,
+div.foldershare-folder-selection-table table.views-table thead tr th a:focus,
+div.foldershare-folder-selection-table table.views-table thead tr th a,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr th a:hover,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr th a:focus,
+div.foldershare-folder-selection-table div.views-form > form > table thead tr th a,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr th a:hover,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr th a:focus,
+div.foldershare-folder-selection-table div.views-form > form > div > table thead tr th a,
+div.foldershare-folder-table table.views-table thead tr th a:hover,
+div.foldershare-folder-table table.views-table thead tr th a:focus,
+div.foldershare-folder-table table.views-table thead tr th a,
+div.foldershare-folder-table div.views-form > form > table thead tr th a:hover,
+div.foldershare-folder-table div.views-form > form > table thead tr th a:focus,
+div.foldershare-folder-table div.views-form > form > table thead tr th a,
+div.foldershare-folder-table div.views-form > form > div > table thead tr th a:hover,
+div.foldershare-folder-table div.views-form > form > div > table thead tr th a:focus,
+div.foldershare-folder-table div.views-form > form > div > table thead tr th a {
+  /* Override Drupal's elements.css to remove table header underlines. */
+  text-decoration: none;
+  border-bottom: none;
+}
+
+div.foldershare-folder-selection-table table.views-table tbody tr td.is-active,
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr td.is-active,
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr td.is-active,
+div.foldershare-folder-table table.views-table tbody tr td.is-active,
+div.foldershare-folder-table div.views-form > form > table tbody tr td.is-active,
+div.foldershare-folder-table div.views-form > form > div > table tbody tr td.is-active {
+  /*
+   * Get rid of the tablesort.css background color on the current
+   * sort column. The arrow on the column header is sufficient.
+   */
+  background-color: transparent;
+}
+
+div.foldershare-folder-selection-table table.views-table tbody tr.selected td,
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr.selected td,
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr.selected td,
+div.foldershare-folder-table table.views-table tbody tr.selected td,
+div.foldershare-folder-table div.views-form > form > table tbody tr.selected td,
+div.foldershare-folder-table div.views-form > form > div > table tbody tr.selected td {
+  /*
+   * Override Drupal's tableselect.css to remove td backgrounds since we
+   * set them on tr.
+   */
+  background: transparent;
+}
+
+div.foldershare-folder-selection-table table.views-table tbody td.is-active,
+div.foldershare-folder-selection-table div.views-form > form > table tbody td.is-active,
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody td.is-active,
+div.foldershare-folder-table table.views-table tbody td.is-active,
+div.foldershare-folder-table div.views-form > form > table tbody td.is-active,
+div.foldershare-folder-table div.views-form > form > div > table tbody td.is-active {
+  /* Remove special coloring of the current sort column. */
+  background: transparent;
+}
+div.foldershare-folder-selection-table table.views-table tbody tr.selected,
+div.foldershare-folder-selection-table div.views-form > form > table tbody tr.selected,
+div.foldershare-folder-selection-table div.views-form > form > div > table tbody tr.selected,
+div.foldershare-folder-table table.views-table tbody tr.selected,
+div.foldershare-folder-table div.views-form > form > table tbody tr.selected,
+div.foldershare-folder-table div.views-form > form > div > table tbody tr.selected {
+  /* Highlight selected rows. */
+  background: #b4d4fc;        /* Sites may wish to customize this color */
+}
+
+div.foldershare-folder-table table.views-table.foldershare-draghover {
+  border: 2px solid #b4d4fc;  /* Sites may wish to customize this color */
+}
+
+div.foldershare-folder-table table tr.foldershare-draghover td,
+div.foldershare-folder-table table tr.foldershare-draghover td.is-active,
+div.foldershare-folder-table table.views-table tbody tr.foldershare-draghover td.is-active,
+div.foldershare-folder-table div.views-form > form > table tr.foldershare-draghover tbody td.is-active,
+div.foldershare-folder-table div.views-form > form > div > table tr.foldershare-draghover tbody td.is-active,
+div.foldershare-folder-table table.views-table tbody tr.selected.foldershare-draghover,
+div.foldershare-folder-table div.views-form > form > table tbody tr.selected.foldershare-draghover,
+div.foldershare-folder-table div.views-form > form > div > table tbody tr.selected.foldershare-draghover {
+  /* During a drag, highlight folder rows. */
+  background: #b4d4fc;        /* Sites may wish to customize this color */
+}
+
+div.foldershare-folder-table .file > span {
+  /* Turn off the borders Bootstrap themes insist on adding to every file link. */
+  border: none;
+}
+
+/*
+ * Simplify the styling on the ghost table during a drag.
+ */
+table.dragImage {
+  width: auto;
+  border: none;
+}
+table.dragImage tr {
+  background-color: transparent;
+  border: none;
+}
+table.dragImage tr td {
+  background-color: transparent;
+  border: none;
+}
+
+.foldershare-search-results td,
+.foldershare-search-results th,
+.foldershare-folder-selection-table td,
+.foldershare-folder-selection-table th,
+.foldershare-folder-table td,
+.foldershare-folder-table th {
+  /* Prevent table column content from wrapping. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /*
+   * By default, the file/folder table has 4 columns: name, date, owner, size.
+   * Sites may change this, but usually they won't. Give all columns a piece
+   * of the table width, then override for known columns below.
+   */
+  width: 15%;
+  max-width: 15%;
+}
+.foldershare-search-results .views-field-size,
+.foldershare-folder-selection-table .views-field-size,
+.foldershare-folder-table .views-field-size {
+  /* File/folder size column never needs a lot of room. */
+  width: 5em;
+  min-width: 5em;
+}
+.foldershare-search-results .views-field-created,
+.foldershare-search-results .views-field-changed,
+.foldershare-folder-selection-table .views-field-created,
+.foldershare-folder-selection-table .views-field-changed,
+.foldershare-folder-table .views-field-created,
+.foldershare-folder-table .views-field-changed {
+  /* File/folder dates never need a lot of room. */
+  width: 11em;
+  min-width: 11em;
+}
+.foldershare-search-results .views-field-uid,
+.foldershare-folder-selection-table .views-field-uid,
+.foldershare-folder-table .views-field-uid {
+  /*
+   * File/folder owner needs enough room for long names, but there is no way
+   * to know a fixed maximum. If we don't set this, the column will go from
+   * narrow to wide depending on what names are shown. To have some
+   * page-to-page continuity, we set a minimum width sufficient for simple
+   * names.
+   */
+  width: 8em;
+  min-width: 5em;
+}
+.foldershare-search-results .views-field-name,
+.foldershare-folder-selection-table .views-field-name,
+.foldershare-folder-table .views-field-name {
+  /* Give the file/folder name column all the rest of the table width. */
+  width: 100%;
+  min-width: 10em;
+  max-width: 0;
+}
+
+/**
+ * Responsive tables. Themes may override this.
+ *
+ * Common width breakpoints are:
+ * - min-width: 300px       Smartphones, portrait
+ * - min-width: 480px       Smartphones, landscape
+ * - min-width: 768px       Tablets, portrait
+ * - min-width: 1024px      Tablets, landscape, and desktops
+ *
+ * The default file/folder table has four columns and above we set the
+ * minimum widths of some:
+ *
+ * - Name: varies  (high priority)
+ * - Date: 11 em   (medium priority)
+ * - Owner: 11 em  (medium priority)
+ * - Size: 5 em    (low priority)
+ *
+ * A reasonable minimum for the name column is, perhaps, 10 em. That
+ * gives us a minimum table size showing all columns as: 10+11+11+7 = 39em.
+ *
+ * While we can set the @media max-width in ems, most themes set it in px.
+ * Common break widths are:
+ * - 480px
+ * - 640px
+ * - 767px
+ * - 800px
+ * - 949px
+ *
+ * So it is safer to use these. We don't know the font size for the site,
+ * but let us assume a common 13.5px size. The minimum table width showing
+ * all columns then 13.5px/em * 39em = 526.5px. This doesn't include borders,
+ * padding, side-bars, etc.
+ *
+ * A best guess, then, is that screen sizes less than 640px certainly cannot
+ * show low-priority columns. And if the site has side-bars, 767px is a
+ * minimum.
+ *
+ * For the name+date+owner columns, at 13.5px/em the minimum width is
+ * (10+11+11) * 13.5 = 432px. Accounting for borders, padding, and possible
+ * side-bars, and screens less than 640px probably can't show those columns.
+ */
+@media screen and (max-width: 640px) {
+  /* When too little space for anything but name, only show name. */
+  div.foldershare-folder-table table th.priority-low,
+  div.foldershare-folder-table table td.priority-low,
+  div.foldershare-folder-table table th.priority-medium,
+  div.foldershare-folder-table table td.priority-medium {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* When too little space for all 4 default columns, drop low priority. */
+  div.foldershare-folder-table table th.priority-low,
+  div.foldershare-folder-table table td.priority-low {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  /* Narrow screens are probably touch devices, so make things bigger. */
+  div.foldershare-folder-table table.views-table thead tr,
+  div.foldershare-folder-table div.views-form > form > table thead tr,
+  div.foldershare-folder-table div.views-form > form > div > table thead tr {
+    line-height: 3em;
+  }
+
+  div.foldershare-folder-table table.views-table thead tr,
+  div.foldershare-folder-table table.views-table tbody tr,
+  div.foldershare-folder-table table.views-table tfoot tr,
+  div.foldershare-folder-table div.views-form > form > table thead tr,
+  div.foldershare-folder-table div.views-form > form > table tbody tr,
+  div.foldershare-folder-table div.views-form > form > table tfoot tr,
+  div.foldershare-folder-table div.views-form > form > div > table thead tr,
+  div.foldershare-folder-table div.views-form > form > div > table tbody tr,
+  div.foldershare-folder-table div.views-form > form > div > table tfoot tr {
+    line-height: 3em;
+  }
+}
+
+
+div.foldershare-folder-selection-table .tableresponsive-toggle-columns,
+div.foldershare-folder-table .tableresponsive-toggle-columns {
+  /*
+   * Remove the button added by tableresponsive.js to show/hide columns
+   * when the page is narrow and columns have been hidden. This button
+   * doesn't fit in the folder contents table's styling and provides
+   * functionality that interferes with the smooth presentation of content.
+   * We'd prefer to remove tableresponsive.js entirely, but a depending
+   * on the library is added automatically by views.
+   */
+  display: none;
+}
+
+
+/*-----------------------------------------------------------------------
+ *
+ * Contents table pager.
+ *
+ *-----------------------------------------------------------------------*/
+
+div.foldershare-folder-selection-table .pager,
+div.foldershare-folder-table .pager {
+  /* Give the pager area some padding. */
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  /* Use the same background color as the top of the footer so that the */
+  /* pager area looks like it blends into the footer. */
+  background: #e5e4e6;
+}
+div.foldershare-folder-selection-table .pager ul,
+div.foldershare-folder-table .pager ul {
+  padding: 0;
+  text-align: center;
+  margin: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Contents table footer.
+ *
+ * For themes based upon Drupal core's "Classy", a footer on a view is
+ * marked with the ".view-footer" class. For other themes, the element has no
+ * well-known class and we must rely upon a nesting order.
+ *
+ *-----------------------------------------------------------------------*/
+
+/**
+ * Give the table footer a background and center its text.
+ */
+.foldershare-folder-selection-table footer.view-footer,
+.foldershare-folder-selection-table div.view-footer,
+.foldershare-folder-selection-table footer,
+.foldershare-folder-selection-table > footer,
+.foldershare-folder-table footer.view-footer,
+.foldershare-folder-table div.view-footer,
+.foldershare-folder-table footer,
+.foldershare-folder-table > footer {
+  margin: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  text-align: center;
+  background: #e5e3e6;
+  background: linear-gradient(#e5e3e6, #d5d4d5);
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Contents table exposed filters.
+ *
+ * The default views for folder lists do not include exposed filters.
+ * But if a site adds them, ttyle the background and padding to help them
+ * integrate into the folder listing if they are added.
+ *
+ *-----------------------------------------------------------------------*/
+
+div.foldershare-folder-selection-table .view-filters .views-exposed-form,
+div.foldershare-folder-table .view-filters .views-exposed-form {
+  background: #ececec;
+  padding: 5px;
+}
+div.foldershare-folder-selection-table .view-filters .views-exposed-form label,
+div.foldershare-folder-table .view-filters .views-exposed-form label {
+  /* Get rid of bold labels */
+  font-weight: normal;
+}
+div.foldershare-folder-selection-table .view-filters .views-exposed-form .form-item,
+div.foldershare-folder-selection-table .view-filters .views-exposed-form .form-actions,
+div.foldershare-folder-table .view-filters .views-exposed-form .form-item,
+div.foldershare-folder-table .view-filters .views-exposed-form .form-actions {
+  /* Override Drupal's inline-form.css to reduce huge right margins. */
+  margin-right: 5px;
+  /* Override Drupal's form.css to get remove huge margins. */
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/*-----------------------------------------------------------------------
+ *
+ * Contents table on a non-folder entity.
+ *
+ *-----------------------------------------------------------------------*/
+
+/*
+ * When showing non-folder entities, there are no children to list in the
+ * table, but the table's header is still needed for the UI it provides.
+ * So, hide the table and the responsive columns message.
+ */
+.foldershare-nonfolder-table .views-element-container {
+  display: none;
+}

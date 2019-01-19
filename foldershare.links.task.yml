@@ -1,0 +1,35 @@
+#
+# Defines 'local' link tabs on entity pages.
+#
+
+#-----------------------------------------------------------------------
+#
+# Entity pages.
+#
+#-----------------------------------------------------------------------
+
+# Show FolderShare view tab.
+# --------------------------
+# The 'View' tab on a FolderShare entity page shows the entity's field
+# values and an embedded table view of the entity's children, if any.
+#
+foldershare.view:
+  route_name: entity.foldershare.canonical
+  base_route: entity.foldershare.canonical
+  title: 'View'
+
+#-----------------------------------------------------------------------
+#
+# Module settings pages.
+#
+#-----------------------------------------------------------------------
+
+# Show module settings.
+# ---------------------
+# The module settings page shows values that can be configured by a site
+# administrator.
+#
+foldershare.settings_edit:
+  route_name: entity.foldershare.settings
+  base_route: entity.foldershare.settings
+  title: 'Settings'
